@@ -6,8 +6,8 @@ var fs      = require('fs');
 var read    = fs.readFileSync;
 var readdir = fs.readdirSync
 
-var koa       = require('koa');
-var restylcss = require('..');
+var koa          = require('koa');
+var stylreworker = require('..');
 
 // basic testing of some reworkcss plugins
 var colors     = require('rework-plugin-colors');
@@ -42,7 +42,7 @@ function prefixer(autoprefixer, css) {
 var listen;
 var app = koa();
 app.use(
-  restylcss({
+  stylreworker({
     src: __dirname,
     transformPath: transformPath,
     reworkcss: reworker,
@@ -50,7 +50,7 @@ app.use(
   })
 );
 
-describe('koa-styl-rework', function() {
+describe('koa-stylreworker', function() {
   // startup
   before(function() {
     listen = app.listen();

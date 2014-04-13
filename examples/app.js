@@ -1,4 +1,4 @@
-var restylecss = require('..');
+var stylreworker = require('..');
 
 var koa = require('koa');
 var etag = require('koa-etag');
@@ -42,7 +42,7 @@ function prefixer(autoprefixer, css) {
 //app.use(serve(__dirname, { defer: true }));
 
 app.use(
-  restylecss({
+  stylreworker({
     src: __dirname,
     transformPath: transformPath,
     reworkcss: reworker,
