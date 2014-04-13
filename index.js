@@ -99,14 +99,14 @@ module.exports = function stylreworker(options) {
 
     // filter on HTTP GET/HEAD & *.css resource
     if (('GET' !== this.method && 'HEAD' !== this.method) || !/\.css$/.test(this.path))
-      return;
+      return yield *next;
 
     var dst  = path.join(options.dest, this.path);
     var src  = path.join(options.dest, options.transformPath(this.path.replace('.css', '.styl')));
 
-    // if src doesn't exist hand off
+    // if src doesn't exist hand off downstream
     if (!fs.existsSync(src))
-      return;
+      return yield *next;
 
     // init cache for requested resource
     cache[dst] = cache[dst] || {};
@@ -157,6 +157,6 @@ module.exports = function stylreworker(options) {
     }
     
     // allow downstream middlewares to do work
-    yield next;
+    yield *next;
   }
 };
