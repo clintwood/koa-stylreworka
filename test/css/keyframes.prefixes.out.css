@@ -1,0 +1,21 @@
+@-webkit-keyframes animate {
+  from {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+  }
+
+  to {
+    -webkit-transform: rotateX(150deg);
+    transform: rotateX(150deg);
+  }
+}@keyframes animate {
+  from {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+  }
+
+  to {
+    -webkit-transform: rotateX(150deg);
+    transform: rotateX(150deg);
+  }
+}
