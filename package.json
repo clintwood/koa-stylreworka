@@ -1,8 +1,9 @@
 {
-  "name": "stylreworker",
+  "name": "koa-stylreworker",
   "description": "Koajs styl-like css-whitespace - reworkcss - autoprefixer middleware.",
+  "keywords": ["Koajs", "css-whitespace", "styl", "autoprefixer", "css"],
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "clintwood",
     "email": "clint@anotherway.co.za"
@@ -33,7 +34,13 @@
     "rework-inherit": "*",
     "rework-mixins": "*"
   },
+  "main": "index.js",
   "scripts": {
     "test": "mocha --harmony -R spec -u bdd"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/clintwood/koa-stylreworker",
+  "bugs": {
+    "url": "https://github.com/clintwood/koa-stylreworker/issues"
   }
 }
