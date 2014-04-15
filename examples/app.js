@@ -37,9 +37,9 @@ function prefixer(autoprefixer, css) {
 }
 
 // try compatibility with other middlewares...
-//app.use(fresh());
-//app.use(etag());
-//app.use(serve(__dirname, { defer: true }));
+app.use(fresh());
+app.use(etag());
+app.use(serve(__dirname, { defer: true }));
 
 app.use(
   stylreworker({
@@ -50,14 +50,14 @@ app.use(
   })
 );
 
-//// compress (gzip)
-// app.use(compress({
-//   filter: function (content_type) {
-//     return /text/i.test(content_type)
-//   },
-//   threshold: 1024,
-//   flush: require('zlib').Z_SYNC_FLUSH
-// }));
+// compress (gzip)
+app.use(compress({
+  filter: function (content_type) {
+    return /text/i.test(content_type)
+  },
+  threshold: 1024,
+  flush: require('zlib').Z_SYNC_FLUSH
+}));
 
 app.listen(3000);
 console.log('listening on port 3000');

@@ -9,7 +9,6 @@
     "email": "clint@anotherway.co.za"
   },
   "dependencies": {
-    "co": "*",
     "co-fs": "*",
     "rework": "reworkcss/rework#v1",
     "css-whitespace": "clintwood/css-whitespace#importer",

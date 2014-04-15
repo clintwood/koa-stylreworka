@@ -1,6 +1,6 @@
 # koa-stylreworker
 
-## Koajs styl-like css-whitespace - reworkcss - autoprefixer middleware.
+**Koajs styl-like css-whitespace - reworkcss - autoprefixer middleware.**
 
 (very alpha...)
 
