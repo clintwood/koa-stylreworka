@@ -1,5 +1,5 @@
 {
-  "name": "koa-stylreworker",
+  "name": "koa-stylreworka",
   "description": "Koajs styl-like css-whitespace - reworkcss - autoprefixer middleware.",
   "keywords": ["Koajs", "css-whitespace", "styl", "autoprefixer", "css"],
   "private": true,
@@ -38,8 +38,8 @@
     "test": "mocha --harmony -R spec -u bdd"
   },
   "license": "MIT",
-  "homepage": "https://github.com/clintwood/koa-stylreworker",
+  "homepage": "https://github.com/clintwood/koa-stylreworka",
   "bugs": {
-    "url": "https://github.com/clintwood/koa-stylreworker/issues"
+    "url": "https://github.com/clintwood/koa-stylreworka/issues"
   }
 }
