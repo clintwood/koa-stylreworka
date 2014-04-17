@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-var debug = require('debug')('koa-stylreworker');
+var debug = require('debug')('koa-stylreworka');
 var fs = require('fs');
 var cofs = require('co-fs');
 var path = require('path');
@@ -25,7 +25,7 @@ var autoprefixer = require('autoprefixer')
  *  .styl will be used.  .css files will skip the css-whitespace preprocessing and if src & dest are the same and 
  *  no .styl file exists in that location the .css will be served as a static css file with no preprocessing.
  */
-module.exports = function stylreworker(options) {
+module.exports = function stylreworka(options) {
 
   options = options || {};
   if ('string' == typeof options)
@@ -101,7 +101,7 @@ module.exports = function stylreworker(options) {
   }
 
   // handle *.css requests
-  return function * stylreworker(next) {
+  return function * stylreworka(next) {
 
     // filter on HTTP GET/HEAD & *.css resource
     if (('GET' !== this.method && 'HEAD' !== this.method) || !/\.css$/.test(this.path))
