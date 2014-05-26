@@ -1,37 +1,42 @@
 {
   "name": "koa-stylreworka",
   "description": "Koajs styl-like css-whitespace - reworkcss - autoprefixer middleware.",
-  "keywords": ["Koajs", "css-whitespace", "styl", "autoprefixer", "css"],
+  "keywords": [
+    "Koajs",
+    "css-whitespace",
+    "styl",
+    "autoprefixer",
+    "css"
+  ],
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.7",
   "author": {
     "name": "clintwood",
     "email": "clint@anotherway.co.za"
   },
   "dependencies": {
-    "co-fs": "*",
-    "rework": "reworkcss/rework#v1",
+    "co-fs": "^1.2.0",
+    "rework": "^0.20.2",
     "css-whitespace": "clintwood/css-whitespace#importer",
-    "autoprefixer": "*",
-    "buffer-crc32": "*",
-    "debug": "*"
-
+    "autoprefixer": "^1.1.20140523",
+    "buffer-crc32": "^0.2.1",
+    "debug": "^0.8.1"
   },
   "devDependencies": {
-    "mocha": "*",
-    "should": "*",
-    "supertest": "*",
-    "koa": "*",
-    "koa-etag": "*",
-    "koa-fresh": "*",
-    "koa-static": "*",
-    "koa-compress": "*",
-    "rework-plugin-colors": "reworkcss/rework-plugin-colors",
-    "rework-plugin-ease": "reworkcss/rework-plugin-ease",
-    "rework-plugin-mixin": "reworkcss/rework-plugin-mixin",
-    "rework-plugin-references": "reworkcss/rework-plugin-references",
-    "rework-inherit": "*",
-    "rework-mixins": "*"
+    "mocha": "^1.19.0",
+    "should": "^3.3.2",
+    "supertest": "^0.13.0",
+    "koa": "^0.6.1",
+    "koa-etag": "^1.2.4",
+    "koa-fresh": "^0.0.3",
+    "koa-compress": "^1.0.7",
+    "koa-static": "^1.4.5",
+    "rework-inherit": "^0.2.2",
+    "rework-plugin-colors": "git://github.com/reworkcss/rework-plugin-colors",
+    "rework-plugin-ease": "git://github.com/reworkcss/rework-plugin-ease",
+    "rework-plugin-mixin": "git://github.com/reworkcss/rework-plugin-mixin",
+    "rework-plugin-references": "git://github.com/reworkcss/rework-plugin-references",
+    "rework-mixins": "^1.1.1"
   },
   "main": "index.js",
   "scripts": {
