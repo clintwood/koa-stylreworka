@@ -53,26 +53,54 @@ module.exports = function stylreworka(options) {
     return path;
   };
 
+/**
+  * Cache is of the form:
+  *
+  * {
+  *   <target> : {
+  *     etag: <number>,
+  *     mtime: <mtime ms>,
+  *     files: [
+  *       <dependant filepath>,
+  *       <dependant filepath>
+  *     ]
+  *   }
+  * }
+  * 
+  */
   var cache = {};
 
   // check mtimes
-  function * checkMTimes(target) {
+  function* checkMTimes(target) {
     var tcache = cache[target];
 
+    // no mtime so outdated
     if (!tcache.mtime)
       return false;
 
-    // get mtime of target and
-    var tmtime = (yield cofs.stat(target)).mtime.getTime();
-    // check against cached target mtime
-    if (tmtime < tcache.mtime)
-      return false;
+    // get mtime of target and check dependant mtimes
+    var tmtime;
+    try {
+      // get mtime of target and
+      var stat = (yield cofs.stat(target));
+      tmtime = stat.mtime.getTime()
+      // check against cached target mtime
+      if (tmtime < tcache.mtime)
+        return false;
+    } catch(e) {
+      return false; // doesn't exist
+    }
 
     if (tcache.files) {
       // dependents
       for (var i = 0; i < tcache.files.length; i++) {
-        if (!(yield cofs.exists(tcache.files[i])) || tmtime < (yield cofs.stat(tcache.files[i])).mtime.getTime())
+        try {
+          var stat = yield cofs.stat(tcache.files[i]);
+          if (tmtime < stat.mtime.getTime())
+            return false;
+        } catch(e) {
           return false;
+        }
       }
     }
 
@@ -101,11 +129,11 @@ module.exports = function stylreworka(options) {
   }
 
   // handle *.css requests
-  return function * stylreworka(next) {
+  return function* stylreworka(next) {
 
     // filter on HTTP GET/HEAD & *.css resource
     if (('GET' !== this.method && 'HEAD' !== this.method) || !/\.css$/.test(this.path))
-      return yield * next;
+      return yield* next;
 
     var dst = path.join(options.dest, this.path);
     var dstExists = yield cofs.exists(dst);
@@ -127,7 +155,7 @@ module.exports = function stylreworka(options) {
         this.body = yield cofs.readFile(dst, 'utf8');
         this.set('Content-Type', 'text/css');
       }
-      return yield * next;
+      return yield* next;
     }
 
     // probe for src & src type (.css/.styl)
@@ -139,7 +167,7 @@ module.exports = function stylreworka(options) {
 
     // if dst & src don't exist hand off downstream
     if (!dstExists && !srcExists)
-      return yield * next;
+      return yield* next;
 
     // can only serve dst css
     if ((dstEQsrc && !stylExists) || (dstExists && !srcExists)) {
@@ -151,7 +179,7 @@ module.exports = function stylreworka(options) {
       cache[dst].mtime = (yield cofs.stat(dst)).mtime.getTime();
       this.set('Content-Type', 'text/css');
       this.set('ETag', '"' + cache[dst].etag + '"');
-      return yield * next;
+      return yield* next;
     }
 
     // preprocess
@@ -170,6 +198,7 @@ module.exports = function stylreworka(options) {
     // if src is .css
     if (!css && cssExists) {
       debug('src is css (' + this.path + ')');
+      cache[dst].files = [src];
       css = yield cofs.readFile(src, 'utf8');
     }
 
@@ -199,6 +228,6 @@ module.exports = function stylreworka(options) {
     cache[dst].mtime = (yield cofs.stat(dst)).mtime.getTime();
 
     // allow downstream middlewares to do work
-    yield * next;
+    yield* next;
   }
 };
