@@ -9,16 +9,16 @@
     "css"
   ],
   "private": true,
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": {
     "name": "clintwood",
     "email": "clint@anotherway.co.za"
   },
   "dependencies": {
     "co-fs": "^1.2.0",
-    "rework": "^0.20.2",
+    "rework": "reworkcss/rework#master",
     "css-whitespace": "clintwood/css-whitespace#importer",
-    "autoprefixer": "^1.1.20140523",
+    "autoprefixer": "^1.1.0",
     "buffer-crc32": "^0.2.1",
     "debug": "^0.8.1"
   },
@@ -40,7 +40,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "mocha --harmony -R spec -u bdd"
+    "test": "./node_modules/.bin/mocha --harmony --reporter spec"
   },
   "license": "MIT",
   "homepage": "https://github.com/clintwood/koa-stylreworka",
